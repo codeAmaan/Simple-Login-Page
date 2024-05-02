@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome</h2>
+      <div>
+        <label>Email</label>
+        <input type="email" id="email" />
+        <span id="emailError" style="color: red; display: none"
+          >Please enter a valid Gmail address.</span
+        >
+      </div>
+      <div>
+        <div class="input-box">
+          <label> Password</label>
+          <input type="password" id="password" />
+          <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
+        </div>
+      </div>
+      <button id="loginBtn" type="submit">Login</button>
+      <p>Don't have an account ? <a href="#">Sign Up.</a></p>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/817e920a8e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let eyeIcon = document.getElementById("eye-icon");
+      let password = document.getElementById("password");
+      let loginButton = document.getElementById("loginBtn");
+      let emailInput = document.getElementById("email");
+      let emailError = document.getElementById("emailError");
+
+      eyeIcon.addEventListener("click", () => {
+        if (password.type === "password") {
+          password.type = "text";
+          eyeIcon.classList = `fa-solid fa-eye`;
+        } else {
+          password.type = "password";
+          eyeIcon.classList = `fa-solid fa-eye-slash`;
+        }
+      });
+
+      //   Click Effect on login Button
+      loginButton.addEventListener("click", () => {
+        loginButton.classList.add("button-clicked");
+
+        setTimeout(() => {
+          loginButton.classList.remove("button-clicked");
+        }, 300);
+      });
+
+      loginButton.addEventListener("click", () => {
+        //   Show Error If email not end with '@gmail.com'
+        if (!emailInput.value.endsWith("@gmail.com")) {
+          emailError.style.display = "block";
+          //   If email end with '@gmail.com' don't sow error
+        } else {
+          emailError.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
+
